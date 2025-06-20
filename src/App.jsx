@@ -73,7 +73,7 @@ function App() {
           <Routes>
             <Route path="/search" element={<SearchPage />} />
             <Route path="/" element={<Home games={games} />} />
-            <Route path="/games/:genre" element={<Sidebar />} />
+            <Route path="/games/:genre" element={<GenrePage  />} />
             <Route path="/games/:slug/:id" element={<GamePage />} />
             <Route path="/about" element={<GenrePage />} />
             <Route path="/services" element={<Services />} />

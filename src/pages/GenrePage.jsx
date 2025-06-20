@@ -13,7 +13,7 @@ export default function GenrePage() {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `https://api.rawg.io/api/games?key=40bd261d04944873a0081e285d07a619&genres=${genre}&page=1`
+                    `https://api.rawg.io/api/games?key=9269195f491e44539d7a2d10ce87ab15&genres=${genre}&page=1`
                 );
                 if (!response.ok) {
                     throw new Error(response.statusText);
@@ -44,9 +44,11 @@ export default function GenrePage() {
         <div className="container mx-auto px-4">
             <h1 className="text-center text-3xl my-8">Welcome to {genre} Page</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data?.results?.map((game) => (
+                {data&& data.results.map((game)=><GameCard key={game.id} game={game}/>)}
+
+                {/* {data?.results?.map((game) => (
                     <GameCard key={game.id} game={game} />
-                ))}
+                ))} */}
             </div>
         </div>
     );

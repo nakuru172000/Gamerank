@@ -6,7 +6,7 @@ export default function GamePage() {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
 
-    const initialUrl = `https://api.rawg.io/api/games/${id}?key=92691957491e44539d7a2d10ce87ab15`;
+    const initialUrl = `https://api.rawg.io/api/games/${id}?key=40bd261d04944873a0081e285d07a619`;
 
     const load = async () => {
         try {
@@ -28,7 +28,46 @@ export default function GamePage() {
 
     return (
         <>
-            {error && <h1>{error}</h1>}
+    
+      <h1 className=" ms-5 text-4xl font-bold text-white">
+      {data?.name || 'Game Title'}
+    </h1>
+     <div className="flex flex-col lg:flex-row gap-8 bg-gray-900 rounded-xl p-6 shadow-2xl mt-5">
+
+  <div className="lg:w-1/2 space-y-6 text-gray-100">
+    <p className="text-sm text-gray-400">
+      Released: {data?.released ? new Date(data.released).toLocaleDateString() : 'N/A'}
+    </p>
+    
+  
+    
+    <div className="flex items-center gap-2">
+      <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold">
+        {data?.rating?.toFixed(1) || '?'}
+      </div>
+      <span className="text-lg">Rating</span>
+    </div>
+    
+    <div className="space-y-2">
+      <h2 className="text-2xl font-semibold border-b border-gray-700 pb-2">About</h2>
+      <p className="text-gray-300 leading-relaxed">
+        {data?.description_raw || 'No description available.'}
+      </p>
+    </div>
+  </div>
+
+  {/* Game Image Section */}
+  <div className="lg:w-1/2">
+    <img 
+      src={data?.background_image || 'https://via.placeholder.com/800x450?text=No+Image'} 
+      alt={data?.name || 'Game cover'} 
+      className="w-full h-auto rounded-lg object-cover shadow-lg"
+    />
+  </div>
+</div>
+         
+  
+            {/* {error && <h1>{error}</h1>}
             <div className="style-gamepage">
                 <div className="style-game-info">
                     <p>{data && data.released}</p>
@@ -40,7 +79,7 @@ export default function GamePage() {
                 <div className="style-game-image">
                     <img src={data && data.background_image} alt="" />
                 </div>
-            </div>
+            </div> */}
         </>
     );
 }

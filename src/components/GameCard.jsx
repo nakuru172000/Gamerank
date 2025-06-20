@@ -1,11 +1,11 @@
 import CustomLazyLoadImage from "./CustomLazyLoadImage";
 import { Link } from "react-router";
 
-export default function GameCard({ game, }) {
+export default function GameCard({ game }) {
   const { background_image: image } = game;
 
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
+    <div key={game.id} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
       {/* <img
         src={game.background_image || 'https://via.placeholder.com/400x225?text=No+Image'}
         alt={game.name}
@@ -36,9 +36,9 @@ export default function GameCard({ game, }) {
         <p className="text-sm text-gray-400">
           Piattaforme: {game.platforms ? game.platforms.map(p => p.platform.name).join(', ') : 'N/A'}
         </p>
-        <button className="btn bg-neutral-300 cursor-pointer rounded-3xl px-3 m-2">
-          <Link to={`/games/${game.slug}/${game.id}`}></Link>more
-        </button>
+       
+          <Link className=" bg-neutral-300 cursor-pointer rounded-3xl px-3 m-2" to={`/games/${game.slug}/${game.id}`}>more</Link>
+        
       </div>
     </div>
   );
