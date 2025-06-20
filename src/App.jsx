@@ -1,0 +1,84 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
+import { useState, useEffect } from 'react'
+import SearchPage from './pages/SearchPage'
+import Sidebar from './components/Sidebar'
+
+
+const RAWG_API_KEY = '40bd261d04944873a0081e285d07a619';
+
+function App() {
+
+  const [games, setGames] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [genres, setGenres] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+  const [genresList, setGenresList] = useState([]);
+
+    useEffect(() => {
+    async function fetchGenres() {
+      try {
+        const response = await fetch(`https://api.rawg.io/api/genres?key=${RAWG_API_KEY}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setGenresList(data.results);
+      } catch (err) {
+        console.error("Failed to fetch genres:", err);
+      }
+    }
+
+    fetchGenres();
+  }, []);
+
+  useEffect(() => {
+    async function fetchGames() {
+      setLoading(true);
+      setError(null);
+      try {
+        let url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page=${currentPage}&page_size=20`;
+        if (genres) {
+          url += `&genres=${genres}`;
+        }
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setGames(data.results);
+        setTotalPages(Math.ceil(data.count / 40));
+      } catch (err) {
+        console.error("Failed to fetch games:", err);
+        setError("Impossibile caricare i giochi. Prova più tardi.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchGames();
+  }, [currentPage, genres]);
+  return (
+    <>
+      <Router>
+        <Layout genres={genresList}>
+          <Routes>
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/" element={<Home games={games} />} />
+            <Route path="/games/:genre" element={<Sidebar />} />
+            <Route path="/about" element={<About genres={genresList} />} />
+            <Route path="/services" element={<Services />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </>
+  )
+}
+
+export default App
