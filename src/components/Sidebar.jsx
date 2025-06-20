@@ -1,4 +1,4 @@
-
+import { Link } from "react-router";
 const RAWG_API_KEY = '40bd261d04944873a0081e285d07a619';
 
 export default function Sidebar({ genres }) {
@@ -22,8 +22,8 @@ export default function Sidebar({ genres }) {
             <div className="h-full px-3 py-4 overflow-y-auto bg-gray-500 rounded-2xl dark:bg-gray-800">
             <ul className="space-y-1 font-medium  rounded-3xl">
                                 {genres && genres.map((genre) => (
-                                    <li key={genre.id} className="cursor-pointer hover:bg-gray-400 dark:hover:bg-amber-700 p-2 rounded text-white">
-                                        {genre.name}
+                                    <li key={genre.id} className="cursor-pointer hover:bg-gray-400 tracking-in-expand dark:hover:bg-amber-700 p-2 rounded text-white">
+                                        <Link to={`/games/${genre.slug}`}>{genre.name}</Link>
                                     </li>
                                 ))}
                             </ul>

@@ -36,8 +36,8 @@ export default function GameCard({ game, }) {
         <p className="text-sm text-gray-400">
           Piattaforme: {game.platforms ? game.platforms.map(p => p.platform.name).join(', ') : 'N/A'}
         </p>
-        <button className="btn bg-neutral-300 cursor-pointer">
-          <Link to={`/games/${game.slug}/${game.id}`}></Link>link
+        <button className="btn bg-neutral-300 cursor-pointer rounded-3xl px-3 m-2">
+          <Link to={`/games/${game.slug}/${game.id}`}></Link>more
         </button>
       </div>
     </div>

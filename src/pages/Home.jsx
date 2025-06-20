@@ -1,7 +1,6 @@
 import GameCard from "../components/GameCard"
 
 export default function Home({ games, loading, error }) {
-    // Generate random index based on games array length
     const randomGame = games.length > 0 ? Math.floor(Math.random() * games.length) : 0;
     
     return (<>

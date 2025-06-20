@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import Layout from './components/Layout'
 import Home from './pages/Home'
-import About from './pages/About'
 import Services from './pages/Services'
 import { useState, useEffect } from 'react'
 import SearchPage from './pages/SearchPage'
 import Sidebar from './components/Sidebar'
+import GamePage from './pages/GamePage'
+import GenrePage from './pages/GamePage'
+
 
 
 const RAWG_API_KEY = '40bd261d04944873a0081e285d07a619';
@@ -72,7 +74,8 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/" element={<Home games={games} />} />
             <Route path="/games/:genre" element={<Sidebar />} />
-            <Route path="/about" element={<About genres={genresList} />} />
+            <Route path="/games/:slug/:id" element={<GamePage />} />
+            <Route path="/about" element={<GenrePage />} />
             <Route path="/services" element={<Services />} />
           </Routes>
         </Layout>
