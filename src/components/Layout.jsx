@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 export default function Layout({ children,genres }) {
   return (
-    <div className="min-h-screen bg-gray-800 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-700 dark:bg-gray-900">
       <Navbar /> {/* Your Navbar component */}
       
       
