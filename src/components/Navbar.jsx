@@ -44,11 +44,12 @@ export default function Navbar() {
   return (
     <header className="bg-gray-800 shadow-lg py-4">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center ">
           {/* Logo - Still using <a> if it's always linking to root, or NavLink if it's part of active routing */}
           <NavLink
             to="/" // Changed to NavLink
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-500 hover:text-blue-400 transition-colors flex-shrink-0"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-purple-500 hover:text-blue-400 transition-colors flex-shrink-0 
+            "
           >
             GameRank
           </NavLink>
