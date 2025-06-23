@@ -1,6 +1,7 @@
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import SearchBar from './SearchBar';
+import Footer from './Footer';
 
 export default function Layout({ children,genres }) {
   return (
@@ -18,7 +19,9 @@ export default function Layout({ children,genres }) {
         <main className="w-full md:w-3/4">
           {children} {/* This will be your game list, detail page, etc. */}
         </main>
+
       </div>
+      <Footer/>
     </div>
   );
 }

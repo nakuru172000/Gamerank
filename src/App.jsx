@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import SearchPage from './pages/SearchPage'
 import Sidebar from './components/Sidebar'
 import GamePage from './pages/GamePage'
-import GenrePage from './pages/GamePage'
+import GenrePage from './pages/genrepage'
 
 
 
@@ -73,9 +73,9 @@ function App() {
           <Routes>
             <Route path="/search" element={<SearchPage />} />
             <Route path="/" element={<Home games={games} />} />
-            <Route path="/games/:genre" element={<GenrePage  />} />
+            <Route path="/genre/:genre" element={<GenrePage  />} />
             <Route path="/games/:slug/:id" element={<GamePage />} />
-            <Route path="/about" element={<GenrePage />} />
+            <Route path="/about" element={<GenrePage  />} />
             <Route path="/services" element={<Services />} />
           </Routes>
         </Layout>
