@@ -1,6 +1,8 @@
 @import "tailwindcss";
-h1,h2,h3{color: white;}
-
+h1,h2,h3{color: rgb(226, 218, 218);}
+.nearblack{
+        background-color:#181717 ;
+}
 
 /* ANIMISTA CSS */
 .bounce-in-top {

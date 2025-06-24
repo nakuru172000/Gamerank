@@ -32,7 +32,7 @@ export default function GamePage() {
       <h1 className=" ms-5 text-4xl font-bold text-white">
       {data?.name || 'Game Title'}
     </h1>
-     <div className="flex flex-col lg:flex-row gap-8 bg-gray-900 rounded-xl p-6 shadow-2xl mt-5">
+     <div className="flex flex-col lg:flex-row gap-8 nearblack rounded-xl p-6 shadow-2xl mt-5">
 
   <div className="lg:w-1/2 space-y-6 text-gray-100">
     <p className="text-sm text-gray-400">

@@ -21,7 +21,7 @@ export default function Sidebar({ genres }) {
       {isMobile && (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md text-white shadow-lg"
+          className="md:hidden  fixed top-4 left-4 z-50 p-2 rounded-md text-white shadow-lg"
           aria-label="Toggle menu"
         >
           {isOpen ? (
@@ -46,17 +46,17 @@ export default function Sidebar({ genres }) {
       `}>
         <div className="p-4">
           
-          <div className="bg-gray-800 rounded-xl p-3">
+          <div className="nearblack rounded-xl p-3">
             <h2 className="text-xl font-semibold mb-4 text-center">Generi :</h2>
             {!genres ? (
-              <p className="text-white text-center py-4">Loading genres...</p>
+              <p className="text-gray-200 text-center py-4">Loading genres...</p>
             ) : genres.length > 0 ? (
               <ul className="space-y-2">
   {genres.map((genre, index) => (
-    <li key={genre.id}>
+    <li key={genre.id} className="">
       <Link
         to={`/genre/${genre.slug}`}
-        className="block p-2 rounded-lg text-white hover:bg-gray-700 transition-colors duration-200 tracking-in-expand"
+        className="block p-2  text-gray-100 border-b-2 border-transparent hover:border-amber-400 transition-colors duration-200 tracking-in-expand"
         onClick={() => isMobile && setIsOpen(false)}
         style={{ animationDelay: `${index * 0.05}s` }}
       >
@@ -75,7 +75,7 @@ export default function Sidebar({ genres }) {
       {/* Overlay for mobile when sidebar is open */}
       {isMobile && isOpen && (
         <div 
-          className="fixed inset-0 bg-opacity-50 z-30"
+          className="fixed  inset-0 bg-opacity-50 z-9999"
           onClick={() => setIsOpen(false)}
         />
       )}

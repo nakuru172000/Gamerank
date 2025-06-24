@@ -1,12 +1,12 @@
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
-import SearchBar from './SearchBar';
 import Footer from './Footer';
 
 export default function Layout({ children,genres }) {
   return (
-    <div className="min-h-screen bg-gray-700 dark:bg-gray-900">
-      <Navbar /> {/* Your Navbar component */}
+    <div className="min-h-screen bg-black dark:bg-gray-900">
+      <div className='sticky top-0 z-50'><Navbar /> 
+      </div>
       
       
       <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
