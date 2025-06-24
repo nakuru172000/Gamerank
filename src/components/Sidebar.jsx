@@ -52,18 +52,19 @@ export default function Sidebar({ genres }) {
               <p className="text-white text-center py-4">Loading genres...</p>
             ) : genres.length > 0 ? (
               <ul className="space-y-2">
-                {genres.map((genre) => (
-                  <li key={genre.id}>
-                    <Link
-                      to={`/genre/${genre.slug}`}
-                      className="block p-2 rounded-lg text-white hover:bg-gray-700 transition-colors duration-200"
-                      onClick={() => isMobile && setIsOpen(false)}
-                    >
-                      {genre.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+  {genres.map((genre, index) => (
+    <li key={genre.id}>
+      <Link
+        to={`/genre/${genre.slug}`}
+        className="block p-2 rounded-lg text-white hover:bg-gray-700 transition-colors duration-200 tracking-in-expand"
+        onClick={() => isMobile && setIsOpen(false)}
+        style={{ animationDelay: `${index * 0.05}s` }}
+      >
+        {genre.name}
+      </Link>
+    </li>
+  ))}
+</ul>
             ) : (
               <p className="text-white text-center py-4">No genres available</p>
             )}
