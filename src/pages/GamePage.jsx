@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 export default function GamePage() {
     const { id } = useParams();
@@ -34,52 +34,48 @@ export default function GamePage() {
     </h1>
      <div className="flex flex-col lg:flex-row gap-8 nearblack rounded-xl p-6 shadow-2xl mt-5">
 
-  <div className="lg:w-1/2 space-y-6 text-gray-100">
+  <div className="lg:w-1/1 space-y-6 text-gray-100">
     <p className="text-sm text-gray-400">
       Released: {data?.released ? new Date(data.released).toLocaleDateString() : 'N/A'}
     </p>
-    
-  
-    
     <div className="flex items-center gap-2">
       <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold">
         {data?.rating?.toFixed(1) || '?'}
       </div>
       <span className="text-lg">Rating</span>
     </div>
-    
-    <div className="space-y-2">
-      <h2 className="text-2xl font-semibold border-b border-gray-700 pb-2">About</h2>
-      <p className="text-gray-300 leading-relaxed">
-        {data?.description_raw || 'No description available.'}
-      </p>
-    </div>
-  </div>
-
-  {/* Game Image Section */}
-  <div className="lg:w-1/2">
+      <div className="lg:w-1/2">
     <img 
       src={data?.background_image || 'https://via.placeholder.com/800x450?text=No+Image'} 
       alt={data?.name || 'Game cover'} 
       className="w-full h-auto rounded-lg object-cover shadow-lg"
     />
   </div>
+    <div className="space-y-2">
+      <h2 className="text-2xl font-semibold border-b border-gray-700 pb-2">About</h2>
+      <p className="text-gray-300 leading-relaxed">
+        {data?.description_raw || 'No description available.'}
+      </p>
+    
+      <Link to={"/"} val className="
+          relative px-3  my-9 ms-4 rounded-lg font-medium text-black
+          bg-amber-400
+          border-b-4 border-amber-600
+          transition-all duration-200 ease-out
+          transform hover:-translate-y-1 active:translate-y-0
+          active:border-b-2 active:mt-[2px]
+          shadow-lg hover:shadow-xl
+          focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50
+          group overflow-hidden
+        ">Back</Link>
+   
+    </div>
+  </div>
+
 </div>
          
   
-            {/* {error && <h1>{error}</h1>}
-            <div className="style-gamepage">
-                <div className="style-game-info">
-                    <p>{data && data.released}</p>
-                    <h1>{data && data.name}</h1>
-                    <p>Rating: {data && data.rating}</p>
-                    <p>About:</p>
-                    <p>{data && data.description_raw}</p>
-                </div>
-                <div className="style-game-image">
-                    <img src={data && data.background_image} alt="" />
-                </div>
-            </div> */}
+
         </>
     );
 }
@@ -94,79 +90,3 @@ export default function GamePage() {
 
 
 
-// import { useParams } from "react-router";
-// import { useEffect, useState } from "react";
-
-// export default function GamePage() {
-//     const [data, setData] = useState(null);
-//     const [error, setError] = useState(null);
-//     const [loading, setLoading] = useState(true);
-//     const { id } = useParams();
-
-//     useEffect(() => {
-//         const load = async () => {
-//             try {
-//                 setLoading(true);
-//                 // Corrected the API endpoint - you need to fetch a specific game by ID
-//                 const response = await fetch(
-//                     `https://api.rawg.io/api/games/${id}?key=40bd261d04944873a0081e285d07a619`
-//                 );
-//                 if (!response.ok) {
-//                     throw new Error(response.statusText);
-//                 }
-//                 const json = await response.json();
-//                 setData(json);
-//                 setError(null);
-//             } catch (error) {
-//                 setError(error.message);
-//                 setData(null);
-//             } finally {
-//                 setLoading(false);
-//             }
-//         };
-
-//         load();
-//     }, [id]);
-
-//     if (loading) {
-//         return <div className="text-center text-white">Loading...</div>;
-//     }
-
-//     return (
-//         <>
-//             {error && <h1 className="text-red-600 text-2xl font-bold text-center my-4">{error}</h1>}
-//             {data && (
-//                 <div className="flex flex-col lg:flex-row gap-8 p-6 max-w-7xl mx-auto">
-//                     <div className="lg:w-1/2 space-y-4">
-//                         <p className="text-gray-500 text-sm">
-//                             {new Date(data.released).toLocaleDateString()}
-//                         </p>
-//                         <h1 className="text-4xl font-bold text-white">{data.name}</h1>
-                        
-//                         <div className="flex items-center gap-2">
-//                             <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold">
-//                                 {data.rating?.toFixed(1)}
-//                             </div>
-//                             <span className="text-white">Rating</span>
-//                         </div>
-
-//                         <div className="space-y-2">
-//                             <h2 className="text-2xl font-semibold text-white">About</h2>
-//                             <p className="text-gray-300 leading-relaxed">
-//                                 {data.description_raw || data.description}
-//                             </p>
-//                         </div>
-//                     </div>
-                    
-//                     <div className="lg:w-1/2">
-//                         <img 
-//                             src={data.background_image} 
-//                             alt={data.name}
-//                             className="w-full h-auto rounded-lg shadow-xl object-cover"
-//                         />
-//                     </div>
-//                 </div>
-//             )}
-//         </>
-//     );
-// }

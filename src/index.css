@@ -1,10 +1,18 @@
 @import "tailwindcss";
-h1,h2,h3{color: rgb(226, 218, 218);}
+body{font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;}
+
+h1,h2,h3{color: rgb(226, 218, 218);
+}
 .nearblack{
         background-color:#181717 ;
 }
 .bg-black{
         background-color: rgb(12, 12, 12);
+}
+.bg-amber-400{
+       background-color:  #ffa31a
 }
 
 /* ANIMISTA CSS */

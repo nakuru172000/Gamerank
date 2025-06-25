@@ -7,6 +7,7 @@ import SearchPage from './pages/searchpage'
 import GamePage from './pages/GamePage'
 import GenrePage from './pages/genrepage'
 import RegisterPage from './pages/register'
+import LoginPage from './pages/login'
 
 
 
@@ -44,7 +45,7 @@ function App() {
       setLoading(true);
       setError(null);
       try {
-        let url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page=${currentPage}&page_size=20`;
+        let url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page=${currentPage}&page_size=30`;
         if (genres) {
           url += `&genres=${genres}`;
         }
@@ -71,6 +72,7 @@ function App() {
       <Router>
         <Layout genres={genresList}>
           <Routes>
+            <Route path="/about" element={<LoginPage />}/>
             <Route path="/register" element={<RegisterPage />}/>
             <Route path="/search" element={<SearchPage />} />
             <Route path="/" element={<Home games={games} />} />

@@ -1,25 +1,46 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Link, Links, useNavigate } from 'react-router';
 import { NavLink } from 'react-router';
 import SearchBar from './SearchBar';
+import supabase from '../supabase/supabase-client';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [session, setSession] = useState(null)
 
+
+  const getSession = async () => {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      setSession(data);
+    } else { setSession(null); }
+  }
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert("Signed Out!!")
+      getSession();
+    }
+  }
+
+  useEffect(() => {
+    getSession();
+  }, [])
   const handleSearch = (event) => {
     event.preventDefault();
     if (typeof search === "string" && search.trim().length !== 0) {
       navigate(`/search?query=${search}`);
       setSearch("");
-    } 
+    }
   };
 
   const navItems = [
     { to: '/', label: 'Home' },
-    { to: '/about', label: 'About' },
+    { to: '/about', label: 'Login' },
     { to: '/register', label: 'Register' },
   ];
 
@@ -27,8 +48,8 @@ export default function Navbar() {
   const getNavLinkClass = ({ isActive }) =>
     `text-base lg:text-lg font-medium px-2 py-1 rounded transition-colors duration-200 ` +
     (isActive
-      ? 'bg-amber-400 text-black shadow-md' 
-      : 'text-gray-300 hover:text-white hover:bg-gray-700'); 
+      ? 'bg-amber-400 text-black shadow-md'
+      : 'text-gray-300 hover:text-white hover:bg-gray-700');
 
   const getMobileNavLinkClass = ({ isActive }) =>
     `block text-lg font-medium px-3 py-2 rounded transition-colors duration-200 ` +
@@ -60,14 +81,33 @@ export default function Navbar() {
               {navItems.map((item, index) => (
                 <li key={index}>
                   <NavLink
-                    to={item.to} 
-                    className={getNavLinkClass} 
+                    to={item.to}
+                    className={getNavLinkClass}
                   >
                     {item.label}
                   </NavLink>
                 </li>
               ))}
             </ul>
+            {session ? (
+              <ul className='text-white'>
+                <li>
+                  <details className='dropdown'>
+                    <summary>Account</summary>
+                    <ul dir='rtl'>
+                      <li><a href="">Settings</a></li>
+                      <li><button onClick={signOut}>Logout</button></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>) : (
+              <ul>
+                <Link to={"/login"}>Login</Link>
+                <Link to={"/register"}>Register</Link>
+              </ul>
+
+
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -76,7 +116,7 @@ export default function Navbar() {
             className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-black hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>  
+            <span className="sr-only">Open main menu</span>
             <svg
               className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
               xmlns="http://www.w3.org/2000/svg"
