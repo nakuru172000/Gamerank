@@ -21,7 +21,8 @@ export default function Sidebar({ genres }) {
       {isMobile && (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden  fixed top-4 left-4 z-50 p-2 rounded-md text-white shadow-lg"
+          className="md:hidden 
+           fixed top-4 left-4 z-50 p-2 rounded-md text-white shadow-lg"
           aria-label="Toggle menu"
         >
           {isOpen ? (
