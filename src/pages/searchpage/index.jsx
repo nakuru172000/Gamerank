@@ -60,7 +60,7 @@ export default function SearchPage() {
                             <GameCard key={game.id} game={game} />
                         ))}
                     </div>
-                    <div className="flex justify-center mt-8 space-x-2">
+                    <div className="flex justify-between mt-8 space-x-2">
                         <button
                             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                             disabled={currentPage === 1}
@@ -68,7 +68,7 @@ export default function SearchPage() {
                         >
                             Previous
                         </button>
-                        <span className="px-4 py-2">
+                        <span className="px-4 py-2 text-stone-200">
                             Page {currentPage}
                         </span>
                         <button

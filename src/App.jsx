@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import SearchPage from './pages/searchpage'
 import GamePage from './pages/GamePage'
 import GenrePage from './pages/genrepage'
+import RegisterPage from './pages/register'
 
 
 
@@ -70,6 +71,7 @@ function App() {
       <Router>
         <Layout genres={genresList}>
           <Routes>
+            <Route path="/register" element={<RegisterPage />}/>
             <Route path="/search" element={<SearchPage />} />
             <Route path="/" element={<Home games={games} />} />
             <Route path="/genre/:genre" element={<GenrePage  />} />
