@@ -8,17 +8,13 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [ariaInvalid, setAriaInvalid] = useState(null);
 
   const handleSearch = (event) => {
     event.preventDefault();
     if (typeof search === "string" && search.trim().length !== 0) {
       navigate(`/search?query=${search}`);
       setSearch("");
-      setAriaInvalid(null);
-    } else {
-      setAriaInvalid(true);
-    }
+    } 
   };
 
   const navItems = [
@@ -77,7 +73,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-black hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors"
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>  
@@ -109,16 +105,16 @@ export default function Navbar() {
           className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'
             }`}
         >
-          <div className="bg-gray-700 rounded-lg p-4 space-y-4">
+          <div className="nearblack rounded-lg p-4 space-y-4 shadow-amber-900 shadow-md">
 
             <div className="relative">
               <input
                 type="text"
-                placeholder="Cerca giochi..."
+                placeholder="Search games..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyUp={(e) => e.key === 'Enter' && handleSearch(e)}
-                className="w-full py-2 pl-10 pr-4 rounded-full bg-gray-600 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-gray-500 transition-all"
+                className="w-full py-2 pl-10 pr-4 rounded-full bg-gray-900 text-gray-200 placeholder-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-gray-500 transition-all"
               />
               <svg
                 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"

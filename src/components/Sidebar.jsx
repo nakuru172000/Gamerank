@@ -47,7 +47,7 @@ export default function Sidebar({ genres }) {
       `}>
         <div className="p-4">
           
-          <div className="nearblack rounded-xl p-3">
+          <div className="nearblack rounded-xl p-3  shadow-md shadow-amber-900">
             <h2 className="text-xl font-semibold mb-4 text-center">Generi :</h2>
             {!genres ? (
               <p className="text-gray-200 text-center py-4">Loading genres...</p>

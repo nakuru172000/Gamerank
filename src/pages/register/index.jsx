@@ -8,6 +8,7 @@ import {
 } from "../../lib/validationForm"
 
 export default function RegisterPage() {
+    const navigate=useNavigate();
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formErrors, setFormErrors] = useState({});
     const [touchedFields, setTouchedFields] = useState({});
@@ -75,9 +76,9 @@ const onSubmit = async (event) => {
     };
     return (
         <div className="container mx-auto p-6 max-w-md">
-            <form onSubmit={onSubmit} noValidate className="nearblack p-6 rounded-lg shadow-lg">
-                <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-300 mb-2">Email:</label>
+            <form onSubmit={onSubmit} noValidate className="nearblack p-6 rounded-lg  shadow-xl shadow-amber-900">
+                <div className="mb-4 ">
+                    <label htmlFor="email" className="block text-gray-300 mb-2 ">Email:</label>
                     <input
                         type="email"
                         id="email"
@@ -87,7 +88,7 @@ const onSubmit = async (event) => {
                         onBlur={onBlur("email")}
                         aria-invalid={isInvalid("email")}
                         required
-                        className={`w-full px-4 py-2 rounded bg-gray-400 text-white border ${isInvalid("email") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
+                        className={`w-full px-4 py-2 rounded bg-gray-500 text-white border ${isInvalid("email") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
                     />
                     {formErrors.email && <small className="text-red-400 text-sm">{formErrors.email}</small>}
                 </div>
@@ -103,7 +104,7 @@ const onSubmit = async (event) => {
                         onBlur={onBlur("firstName")}
                         aria-invalid={isInvalid("firstName")}
                         required
-                        className={`w-full px-4 py-2 rounded bg-gray-700 text-white border ${isInvalid("firstName") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
+                        className={`w-full px-4 py-2 rounded bg-gray-500 text-white border ${isInvalid("firstName") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
                     />
                     {formErrors.firstName && <small className="text-red-400 text-sm">{formErrors.firstName}</small>}
                 </div>
@@ -119,7 +120,7 @@ const onSubmit = async (event) => {
                         onBlur={onBlur("lastName")}
                         aria-invalid={isInvalid("lastName")}
                         required
-                        className={`w-full px-4 py-2 rounded bg-gray-700 text-white border ${isInvalid("lastName") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
+                        className={`w-full px-4 py-2 rounded bg-gray-500 text-white border ${isInvalid("lastName") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
                     />
                     {formErrors.lastName && <small className="text-red-400 text-sm">{formErrors.lastName}</small>}
                 </div>
@@ -135,7 +136,7 @@ const onSubmit = async (event) => {
                         onBlur={onBlur("username")}
                         aria-invalid={isInvalid("username")}
                         required
-                        className={`w-full px-4 py-2 rounded bg-gray-700 text-white border ${isInvalid("username") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
+                        className={`w-full px-4 py-2 rounded bg-gray-500 text-white border ${isInvalid("username") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
                     />
                     {formErrors.username && <small className="text-red-400 text-sm">{formErrors.username}</small>}
                 </div>
@@ -151,7 +152,7 @@ const onSubmit = async (event) => {
                         onBlur={onBlur("password")}
                         aria-invalid={isInvalid("password")}
                         required
-                        className={`w-full px-4 py-2 rounded bg-gray-700 text-white border ${isInvalid("password") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
+                        className={`w-full px-4 py-2 rounded bg-gray-500 text-white border ${isInvalid("password") ? "border-red-500" : "border-gray-600"} focus:outline-none focus:ring-2 focus:ring-amber-400`}
                     />
                     {formErrors.password && <small className="text-red-400 text-sm">{formErrors.password}</small>}
                 </div>
