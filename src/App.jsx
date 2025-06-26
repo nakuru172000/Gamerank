@@ -9,7 +9,7 @@ import GenrePage from './pages/genrepage'
 import RegisterPage from './pages/register'
 import LoginPage from './pages/login'
 import SessionProvider from './context/SessionProvider'
-
+import AccountPage from './pages/account'
 
 
 const RAWG_API_KEY = '40bd261d04944873a0081e285d07a619';
@@ -73,6 +73,7 @@ function App() {
       <Router>
         <Layout genres={genresList}>
           <Routes>
+            <Route path="/account" element={<AccountPage />}/>
             <Route path="/login" element={<LoginPage />}/>
             <Route path="/register" element={<RegisterPage />}/>
             <Route path="/search" element={<SearchPage />} />

@@ -11,6 +11,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const { session, setSession } = useContext(SessionContext);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
@@ -57,6 +58,23 @@ export default function Navbar() {
       ? 'bg-amber-500 text-black shadow-md'
       : 'text-gray-300 hover:text-white hover:bg-gray-600');
 
+  const getUserName = () => {
+    return session?.user?.user_metadata?.first_name ||
+      session?.user?.email?.split('@')[0] ||
+      'User';
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isDropdownOpen && !e.target.closest('.dropdown-container')) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isDropdownOpen]);
+
+
   return (
     <header className="bg-black shadow-lg py-4 shadow-amber-900 sticky">
       <div className="container mx-auto px-4">
@@ -76,41 +94,66 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block">
-            <ul className="flex space-x-4 lg:space-x-6">
-              {navItems.map((item, index) => (
-                <li key={index}>
-                  <NavLink
-                    to={item.to}
-                    className={getNavLinkClass}
+                <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            {navItems.map((item, index) => (
+              <NavLink
+                key={index}
+                to={item.to}
+                className={getNavLinkClass}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+
+            {session ? (
+              <div className="relative">
+                <button 
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 py-2"
+                >
+                  <span>Hey {getUserName()}</span>
+                  <svg 
+                    className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
                   >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
-              {session ? (
-                <ul className='text-white'>
-                  <li>
-                    <details className='dropdown text-white'>
-                      <summary className='text-white' >Account </summary>
-                      <ul dir='rtl'>
-                        <li><a className='text-white' href="">Settings</a></li>
-                        <li><button onClick={signOut}>Logout</button></li>
-                      </ul>
-                    </details>
-                  </li>
-                </ul>) : (
-                <ul className='text-white' >
-                  <NavLink className='mx-2' to={"/login"}>Login</NavLink>
-                  <NavLink to={"/register"}>Register</NavLink>
-                </ul>
-
-
-              )}
-            </ul>
-
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {isDropdownOpen && (
+                  <div 
+                    className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700"
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                  >
+                    <NavLink
+                      to="/account"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      Profile
+                    </NavLink>
+                    <button
+                      onClick={signOut}
+                      className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <NavLink to="/login" className={getNavLinkClass}>
+                  Login
+                </NavLink>
+                <NavLink to="/register" className={getNavLinkClass}>
+                  Register
+                </NavLink>
+              </>
+            )}
           </nav>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
