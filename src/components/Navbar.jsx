@@ -233,14 +233,14 @@ export default function Navbar() {
                 <div className='flex space-x-2'>
                   <NavLink
                     to="/account"
-                    className="px-3 py-2 text-gray-300 rounded-md transition-colors duration-200"
+                    className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md border-1 border-amber-400 shadow-amber-900"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     Profile
                   </NavLink>
                   <button
                     onClick={signOut}
-                    className="px-3 py-2 text-gray-300 hover:text-white rounded-md transition-colors duration-200 hover:bg-amber-500 hover:text-black"
+                    className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md shadow-amber-900 border-1 border-amber-400"
                   >
                     Sign Out
                   </button>
@@ -259,7 +259,7 @@ export default function Navbar() {
                     <NavLink
                       to={item.to}
                       className={({ isActive }) =>
-                        `block px-3 py-2 rounded-md transition-colors duration-200 ${isActive
+                        `block  py-2 rounded-md shadow-md shadow-amber-900 text-center border-1 border-amber-400 transition-colors duration-200 ${isActive
                           ? 'bg-amber-500 text-black font-medium'
                           : 'text-gray-300'
                         }`
