@@ -1,6 +1,8 @@
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import Footer from './Footer';
+import BackToTop from './BackToTop';
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function Layout({ children,genres }) {
   return (
@@ -21,6 +23,7 @@ export default function Layout({ children,genres }) {
         </main>
 
       </div>
+      <BackToTop />
       <Footer/>
     </div>
   );
