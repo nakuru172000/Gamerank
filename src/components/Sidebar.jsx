@@ -21,29 +21,51 @@ export default function Sidebar({ genres }) {
       {isMobile && (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden 
-           fixed top-4 left-4 z-50 p-2 rounded-md text-white shadow-lg"
+          className="lg:hidden 
+           fixed top-14 left-4 z-50 p-2 rounded-md text-white shadow-lg"
           aria-label="Toggle menu"
         >
           {isOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+           <svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  className="h-6 w-15 fixed top-18 left-4 rounded-md hover:text-gray-300 text-black bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors" 
+  fill="none" 
+  viewBox="0 0 24 24" 
+  stroke="currentColor"
+>
+  <path 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    strokeWidth={2} 
+    d="M9 5l7 7-7 7" 
+  />
+</svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+           <svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  className="h-6 w-15 fixed top-18 left-4 rounded-md hover:text-gray-300 text-black bg-amber-500  hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors" 
+  fill="none" 
+  viewBox="0 0 24 24" 
+  stroke="currentColor"
+>
+  <path 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    strokeWidth={2} 
+    d="M15 19l-7-7 7-7" 
+  />
+</svg>
           )}
         </button>
       )}
 
       {/* Sidebar */}
       <div className={`
-        ${isMobile ? 'fixed inset-y-0 left-0 transform' : 'static'}
+        ${isMobile ? 'fixed inset-y-20 left-0 transform' : 'static'}
         ${isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'}
         w-64 text-white transition-transform duration-300 ease-in-out
         z-40 h-screen overflow-y-auto
-        ${isMobile ? 'shadow-xl' : ''}
+        ${isMobile ? '' : ''}
       `}>
         <div className="p-4">
           
@@ -76,7 +98,7 @@ export default function Sidebar({ genres }) {
       {/* Overlay for mobile when sidebar is open */}
       {isMobile && isOpen && (
         <div 
-          className="fixed  inset-0 bg-opacity-50 z-9999"
+          className="fixed  inset-20 bg-opacity-50 z-9999"
           onClick={() => setIsOpen(false)}
         />
       )}

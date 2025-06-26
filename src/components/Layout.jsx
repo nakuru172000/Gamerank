@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 export default function Layout({ children,genres }) {
   return (
-    <div className="min-h-screen bg-black dark:bg-gray-900">
+    <div className="min-h-screen dark:bg-gray-900">
       <div className='sticky top-0 z-50'><Navbar /> 
       </div>
       

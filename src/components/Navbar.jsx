@@ -178,7 +178,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-black hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md hover:text-gray-300 text-black bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 transition-colors"
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
@@ -209,7 +209,7 @@ export default function Navbar() {
         <div
           className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'}`}
         >
-          <div className="nearblack rounded-lg p-4 space-y-4 shadow-amber-900 shadow-md">
+          <div className="nearblack rounded-lg p-4 space-y-4 shadow-amber-900 shadow-md mt-11">
             <div className="relative">
               <input
                 type="text"
