@@ -16,21 +16,47 @@ export default function Navbar() {
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
     if (data.session) {
-      setSession(data);
-    } else { setSession(null); }
+      setSession(data.session); // Fixed: set only the session, not the entire data object
+    } else { 
+      setSession(null); 
+    }
   }
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      alert("Signed Out!!")
-      getSession();
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Sign out error:', error);
+        alert('Error signing out: ' + error.message);
+      } else {
+        // Successfully signed out
+        setSession(null);
+        setIsDropdownOpen(false);
+        navigate('/'); // Redirect to home page
+        // Optional: show success message
+        // alert("Successfully signed out!");
+      }
+    } catch (err) {
+      console.error('Unexpected error during sign out:', err);
+      alert('An unexpected error occurred while signing out');
     }
   }
 
   useEffect(() => {
     getSession();
+
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT' || !session) {
+        setSession(null);
+      } else if (session) {
+        setSession(session);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, [])
+
   const handleSearch = (event) => {
     event.preventDefault();
     if (typeof search === "string" && search.trim().length !== 0) {
@@ -41,10 +67,7 @@ export default function Navbar() {
 
   const navItems = [
     { to: '/', label: 'Home' },
-    // { to: '/login', label: 'Login' },
-    // { to: '/register', label: 'Register' },
   ];
-
 
   const getNavLinkClass = ({ isActive }) =>
     `text-base lg:text-lg font-medium px-2 py-1 rounded transition-colors duration-200 ` +
@@ -74,15 +97,13 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isDropdownOpen]);
 
-
   return (
     <header className="bg-black shadow-lg py-4 shadow-amber-900 sticky">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between  items-center ">
+        <div className="flex justify-between items-center">
           <NavLink
-            to="/" // Changed to NavLink
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-amber-400 hover:text-amber-600 transition-colors flex-shrink-0 
-            "
+            to="/"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-amber-400 hover:text-amber-600 transition-colors flex-shrink-0"
           >
             GameRank
           </NavLink>
@@ -90,11 +111,10 @@ export default function Navbar() {
           {/* Search Bar - Desktop */}
           <div className="hidden lg:block relative w-1/3 max-w-md mx-4">
             <SearchBar />
-
           </div>
 
           {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
             {navItems.map((item, index) => (
               <NavLink
                 key={index}
@@ -106,7 +126,7 @@ export default function Navbar() {
             ))}
 
             {session ? (
-              <div className="relative">
+              <div className="relative dropdown-container">
                 <button 
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 py-2"
@@ -154,6 +174,7 @@ export default function Navbar() {
               </>
             )}
           </nav>
+
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -186,11 +207,9 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'
-            }`}
+          className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'}`}
         >
           <div className="nearblack rounded-lg p-4 space-y-4 shadow-amber-900 shadow-md">
-
             <div className="relative">
               <input
                 type="text"

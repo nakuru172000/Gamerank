@@ -26,7 +26,7 @@ export default function SearchBar() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 aria-invalid={ariaInvalid ? "true" : "false"}
-                placeholder="Cerca giochi"
+                placeholder="Search for games"
             />
             <input type="submit" value="" />
         </form>

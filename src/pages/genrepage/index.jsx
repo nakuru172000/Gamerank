@@ -33,7 +33,7 @@ export default function GenrePage() {
     }, [genre]);
 
     if (loading) {
-        return <div className="text-center text-white"><p>Loading...</p></div>;
+        return <div className="loader"></div>
     }
 
     if (error) {
