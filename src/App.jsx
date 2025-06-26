@@ -72,7 +72,7 @@ function App() {
       <Router>
         <Layout genres={genresList}>
           <Routes>
-            <Route path="/about" element={<LoginPage />}/>
+            <Route path="/login" element={<LoginPage />}/>
             <Route path="/register" element={<RegisterPage />}/>
             <Route path="/search" element={<SearchPage />} />
             <Route path="/" element={<Home games={games} />} />

@@ -18,28 +18,41 @@ export default function LoginPage() {
     });
 
     const onSubmit = async (event) => {
-        event.preventDefault();
-        setFormSubmitted(true);
-        const { error, data } = FormSchemaLogin.safeParse(formState);
-        if (error) {
-            const errors = getErrors(error);
-            setFormErrors(errors);
-            console.log(errors);
-        } else {
-            let { error } = await supabase.auth.signInWithPassword({
-                email: data.email,
-                password: data.password,
-            });
-            if (error) {
-                alert("Login error! Please check your credentials.");
-            } else {
-                alert("Login successful!");
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                navigate("/");
-            }
-        }
-    };
+    event.preventDefault();
+    setFormSubmitted(true);
+    
+    // Validate form
+    const { error: validationError, data } = FormSchemaLogin.safeParse(formState);
+    if (validationError) {
+        setFormErrors(getErrors(validationError));
+        return;
+    }
 
+    try {
+        const { data: { user }, error } = await supabase.auth.signInWithPassword({
+            email: data.email.trim(), // Add trim() to remove whitespace
+            password: data.password,
+        });
+
+        if (error) {
+            console.error('Login error:', error);
+            setFormErrors({
+                password: error.message || "Invalid email or password"
+            });
+            return;
+        }
+
+        if (user) {
+            alert("Login successful!");
+            navigate("/");
+        }
+    } catch (err) {
+        console.error('Unexpected error:', err);
+        setFormErrors({
+            password: "An unexpected error occurred. Please try again."
+        });
+    }
+};
     const onBlur = (property) => () => {
         const message = getFieldError(FormSchemaLogin, property, formState[property]);
         setFormErrors((prev) => ({

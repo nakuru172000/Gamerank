@@ -8,7 +8,7 @@ import {
 } from "../../lib/validationForm"
 
 export default function RegisterPage() {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formErrors, setFormErrors] = useState({});
     const [touchedFields, setTouchedFields] = useState({});
@@ -18,36 +18,38 @@ export default function RegisterPage() {
         lastName: "",
         userName: "",
         password: "",
+        confirmPassword: ""
+
     });
-const onSubmit = async (event) => {
-    event.preventDefault();
-    setFormSubmitted(true);
-    const { error, data } = ConfirmSchema.safeParse(formState);
-    if (error) {
-      const errors = getErrors(error);
-      setFormErrors(errors);
-      console.log(errors);
-    } else {
-      let { error } = await supabase.auth.signUp({
-        email: data.email,
-        password: data.password,
-        options: {
-          data: {
-            first_name: data.firstName,
-            last_name: data.lastName,
-            username: data.username
-          }
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setFormSubmitted(true);
+        const { error, data } = ConfirmSchema.safeParse(formState);
+        if (error) {
+            const errors = getErrors(error);
+            setFormErrors(errors);
+            console.log(errors);
+        } else {
+            let { error } = await supabase.auth.signUp({
+                email: data.email,
+                password: data.password,
+                options: {
+                    data: {
+                        first_name: data.firstName,
+                        last_name: data.lastName,
+                        username: data.username
+                    }
+                }
+            });
+            if (error) {
+                alert("Signing up error 👎🏻!");
+            } else {
+                alert("Signed up 👍🏻!");
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                navigate("/");
+            }
         }
-      });
-      if (error) {
-        alert("Signing up error 👎🏻!");
-      } else {
-        alert("Signed up 👍🏻!");
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        navigate("/");
-      }
-    }
-  };
+    };
 
     const onBlur = (property) => () => {
         const message = getFieldError(property, formState[property]);
@@ -157,7 +159,28 @@ const onSubmit = async (event) => {
                     />
                     {formErrors.password && <small className="text-red-400 text-sm">{formErrors.password}</small>}
                 </div>
-
+                <div className="mb-6">
+                    <label htmlFor="confirmPassword" className="block text-gray-300 mb-2">
+                        Confirm Password:
+                    </label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={formState.confirmPassword}
+                        onChange={setField("confirmPassword")}
+                        onBlur={onBlur("confirmPassword")}
+                        aria-invalid={isInvalid("confirmPassword")}
+                        required
+                        className={`w-full px-4 py-2 rounded bg-gray-500 text-white border ${isInvalid("confirmPassword") ? "border-red-500" : "border-gray-600"
+                            } focus:outline-none focus:ring-2 focus:ring-amber-400`}
+                    />
+                    {formErrors.confirmPassword && (
+                        <small className="text-red-400 text-sm">
+                            {formErrors.confirmPassword}
+                        </small>
+                    )}
+                </div>
                 <button
                     type="submit"
                     className="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded transition duration-200"

@@ -10,12 +10,16 @@ export const FormSchema = z.object({
     lastName: z.string().min(1),
     username: z.string().min(3),
     password: z.string().min(8).regex(passwordRegex, passwordError),
+    confirmPassword: z.string().min(8)
+}).refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"]
 });
-export const ConfirmSchema=FormSchema.refine((data)=>data);
+export const ConfirmSchema = FormSchema.refine((data) => data);
 // Login schema
 export const FormSchemaLogin = z.object({
     email: z.string().email(),
-    password: z.string().min(8).regex(passwordRegex, passwordError),
+    password: z.string().min(1, "Password is required"),
 });
 
 // Helper functions

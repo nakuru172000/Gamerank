@@ -40,8 +40,8 @@ export default function Navbar() {
 
   const navItems = [
     { to: '/', label: 'Home' },
-    { to: '/about', label: 'Login' },
-    { to: '/register', label: 'Register' },
+    // { to: '/login', label: 'Login' },
+    // { to: '/register', label: 'Register' },
   ];
 
 
@@ -88,26 +88,27 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
-            </ul>
-            {session ? (
+                {session ? (
               <ul className='text-white'>
                 <li>
-                  <details className='dropdown'>
-                    <summary>Account</summary>
-                    <ul dir='rtl'>
-                      <li><a href="">Settings</a></li>
+                  <details className='dropdown text-white'>
+                    <summary className='text-white' >Account</summary>
+                    <ul  dir='rtl'>
+                      <li><a className='text-white' href="">Settings</a></li>
                       <li><button onClick={signOut}>Logout</button></li>
                     </ul>
                   </details>
                 </li>
               </ul>) : (
-              <ul>
-                <Link to={"/login"}>Login</Link>
-                <Link to={"/register"}>Register</Link>
+              <ul className='text-white' >
+                <NavLink className='mx-2' to={"/login"}>Login</NavLink>
+                <NavLink to={"/register"}>Register</NavLink>
               </ul>
 
 
             )}
+            </ul>
+          
           </nav>
 
           {/* Mobile Menu Button */}
