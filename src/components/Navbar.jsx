@@ -17,8 +17,8 @@ export default function Navbar() {
     const { data } = await supabase.auth.getSession();
     if (data.session) {
       setSession(data.session); // Fixed: set only the session, not the entire data object
-    } else { 
-      setSession(null); 
+    } else {
+      setSession(null);
     }
   }
 
@@ -127,23 +127,23 @@ export default function Navbar() {
 
             {session ? (
               <div className="relative dropdown-container">
-                <button 
+                <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 py-2"
                 >
                   <span>Hey {getUserName()}</span>
-                  <svg 
+                  <svg
                     className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
-                    fill="none" 
-                    stroke="currentColor" 
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                
+
                 {isDropdownOpen && (
-                  <div 
+                  <div
                     className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700"
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
@@ -211,16 +211,12 @@ export default function Navbar() {
         >
           <div className="nearblack rounded-lg p-4 space-y-4 shadow-amber-900 shadow-md mt-11">
             <div className="relative">
-              <input
-                type="text"
-                placeholder="Search games..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyUp={(e) => e.key === 'Enter' && handleSearch(e)}
-                className="w-full py-2 pl-10 pr-4 rounded-full bg-gray-900 text-gray-200 placeholder-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-gray-500 transition-all"
-              />
+
+              <div className=" relative w-1/3 max-w-md mx-4">
+                <SearchBar className=" bg-gray-500" />
+              </div>
               <svg
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                className="absolute left-8 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -230,13 +226,44 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Navigation Links */}
-            <nav>
-              <ul className="space-y-2">
+            <nav className='flex flex-col space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-4'>
+              {/* User greeting and account links */}
+              {session ? (<div className='flex items-center space-x-4'>
+                <span className='text-white font-medium'>Hey {getUserName()}</span>
+                <div className='flex space-x-2'>
+                  <NavLink
+                    to="/account"
+                    className="px-3 py-2 text-gray-300 rounded-md transition-colors duration-200"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Profile
+                  </NavLink>
+                  <button
+                    onClick={signOut}
+                    className="px-3 py-2 text-gray-300 hover:text-white rounded-md transition-colors duration-200 hover:bg-amber-500 hover:text-black"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+              ) : (<> <NavLink to="/login" className={getNavLinkClass}>
+                Login
+              </NavLink>
+                <NavLink to="/register" className={getNavLinkClass}>
+                  Register
+                </NavLink></>)}
+              {/* Navigation items */}
+              <ul className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4">
                 {navItems.map((item, index) => (
                   <li key={index}>
                     <NavLink
                       to={item.to}
-                      className={getMobileNavLinkClass}
+                      className={({ isActive }) =>
+                        `block px-3 py-2 rounded-md transition-colors duration-200 ${isActive
+                          ? 'bg-amber-500 text-black font-medium'
+                          : 'text-gray-300'
+                        }`
+                      }
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}
