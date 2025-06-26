@@ -8,6 +8,7 @@ import GamePage from './pages/GamePage'
 import GenrePage from './pages/genrepage'
 import RegisterPage from './pages/register'
 import LoginPage from './pages/login'
+import SessionProvider from './context/SessionProvider'
 
 
 
@@ -68,7 +69,7 @@ function App() {
     fetchGames();
   }, [currentPage, genres]);
   return (
-    <>
+    <><SessionProvider>
       <Router>
         <Layout genres={genresList}>
           <Routes>
@@ -83,6 +84,7 @@ function App() {
           </Routes>
         </Layout>
       </Router>
+      </SessionProvider>
     </>
   )
 }

@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Link, Links, useNavigate } from 'react-router';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router';
 import { NavLink } from 'react-router';
 import SearchBar from './SearchBar';
-import supabase from '../supabase/supabase-client';
+import { supabase } from '../supabase/supabase-client';
+import SessionContext from '../context/SessionContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [session, setSession] = useState(null)
-
+  const { session, setSession } = useContext(SessionContext);
 
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
@@ -88,27 +88,27 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
-                {session ? (
-              <ul className='text-white'>
-                <li>
-                  <details className='dropdown text-white'>
-                    <summary className='text-white' >Account</summary>
-                    <ul  dir='rtl'>
-                      <li><a className='text-white' href="">Settings</a></li>
-                      <li><button onClick={signOut}>Logout</button></li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>) : (
-              <ul className='text-white' >
-                <NavLink className='mx-2' to={"/login"}>Login</NavLink>
-                <NavLink to={"/register"}>Register</NavLink>
-              </ul>
+              {session ? (
+                <ul className='text-white'>
+                  <li>
+                    <details className='dropdown text-white'>
+                      <summary className='text-white' >Account </summary>
+                      <ul dir='rtl'>
+                        <li><a className='text-white' href="">Settings</a></li>
+                        <li><button onClick={signOut}>Logout</button></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>) : (
+                <ul className='text-white' >
+                  <NavLink className='mx-2' to={"/login"}>Login</NavLink>
+                  <NavLink to={"/register"}>Register</NavLink>
+                </ul>
 
 
-            )}
+              )}
             </ul>
-          
+
           </nav>
 
           {/* Mobile Menu Button */}
