@@ -10,6 +10,7 @@ import RegisterPage from './pages/register'
 import LoginPage from './pages/login'
 import SessionProvider from './context/SessionProvider'
 import AccountPage from './pages/account'
+import FavoritesProvider from './context/FavoritesProvider'
 
 
 const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
@@ -24,7 +25,7 @@ function App() {
   const [totalPages, setTotalPages] = useState(1);
   const [genresList, setGenresList] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
     async function fetchGenres() {
       try {
         const response = await fetch(`https://api.rawg.io/api/genres?key=${RAWG_API_KEY}`);
@@ -70,22 +71,24 @@ function App() {
   }, [currentPage, genres]);
   return (
     <><SessionProvider>
-      <Router>
-        <Layout genres={genresList}>
-          <Routes>
-            <Route path="/account" element={<AccountPage />}/>
-            <Route path="/login" element={<LoginPage />}/>
-            <Route path="/register" element={<RegisterPage />}/>
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/" element={<Home games={games} />} />
-            <Route path="/genre/:genre" element={<GenrePage  />} />
-            <Route path="/games/:slug/:id" element={<GamePage />} />
-            <Route path="/about" element={<GenrePage  />} />
-            <Route path="/services" element={<Services />} />
-          </Routes>
-        </Layout>
-      </Router>
-      </SessionProvider>
+      <FavoritesProvider>
+        <Router>
+          <Layout genres={genresList}>
+            <Routes>
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/" element={<Home games={games} />} />
+              <Route path="/genre/:genre" element={<GenrePage />} />
+              <Route path="/games/:slug/:id" element={<GamePage />} />
+              <Route path="/about" element={<GenrePage />} />
+              <Route path="/services" element={<Services />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </FavoritesProvider>
+    </SessionProvider>
     </>
   )
 }

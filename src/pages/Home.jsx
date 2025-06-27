@@ -3,7 +3,7 @@ import GameCard from "../components/GameCard";
 
 export default function Home({ games, loading, error }) {
     const [currentPage, setCurrentPage] = useState(1);
-    const gamesPerPage = 10; // Adjust based on your layout
+    const gamesPerPage = 10;
     const randomGame = games.length > 0 ? Math.floor(Math.random() * games.length) : 0;
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
@@ -37,10 +37,9 @@ export default function Home({ games, loading, error }) {
                 ))}
             </div>
 
-            {/* Pagination Controls */}
+            {/* Pagination  */}
             {games.length > gamesPerPage && (
-                <div className="flex justify-center mt-8 space-x-2">
-                    {/* Previous Button */}
+                <div className="flex justify-center mt-8 space-x-2">           
                     <button
                         onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
                         disabled={currentPage === 1}
@@ -50,9 +49,7 @@ export default function Home({ games, loading, error }) {
                             }`}
                     >
                         Prev
-                    </button>
-
-                    {/* Page Numbers */}
+                    </button>      
                     {[...Array(totalPages).keys()].map(number => (
                         <button
                             key={number + 1}
@@ -65,8 +62,6 @@ export default function Home({ games, loading, error }) {
                             {number + 1}
                         </button>
                     ))}
-
-                    {/* Next Button */}
                     <button
                         onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
                         disabled={currentPage === totalPages}
