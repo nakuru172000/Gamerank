@@ -7,16 +7,14 @@ import SessionContext from '../context/SessionContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
   const { session, setSession } = useContext(SessionContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
     if (data.session) {
-      setSession(data.session); // Fixed: set only the session, not the entire data object
+      setSession(data.session); 
     } else {
       setSession(null);
     }
@@ -29,12 +27,11 @@ export default function Navbar() {
         console.error('Sign out error:', error);
         alert('Error signing out: ' + error.message);
       } else {
-        // Successfully signed out
+     
         setSession(null);
         setIsDropdownOpen(false);
-        navigate('/'); // Redirect to home page
-        // Optional: show success message
-        // alert("Successfully signed out!");
+        navigate('/'); 
+    
       }
     } catch (err) {
       console.error('Unexpected error during sign out:', err);
@@ -44,8 +41,6 @@ export default function Navbar() {
 
   useEffect(() => {
     getSession();
-
-    // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT' || !session) {
         setSession(null);
@@ -57,13 +52,6 @@ export default function Navbar() {
     return () => subscription.unsubscribe();
   }, [])
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    if (typeof search === "string" && search.trim().length !== 0) {
-      navigate(`/search?query=${search}`);
-      setSearch("");
-    }
-  };
 
   const navItems = [
     { to: '/', label: 'Home' },
@@ -74,13 +62,6 @@ export default function Navbar() {
     (isActive
       ? 'bg-amber-400 text-black shadow-md'
       : 'text-gray-300 hover:text-white hover:bg-gray-700');
-
-  const getMobileNavLinkClass = ({ isActive }) =>
-    `block text-lg font-medium px-3 py-2 rounded transition-colors duration-200 ` +
-    (isActive
-      ? 'bg-amber-500 text-black shadow-md'
-      : 'text-gray-300 hover:text-white hover:bg-gray-600');
-
   const getUserName = () => {
     return session?.user?.user_metadata?.first_name ||
       session?.user?.email?.split('@')[0] ||
@@ -227,7 +208,6 @@ export default function Navbar() {
 
             {/* Mobile Navigation Links */}
             <nav className='flex flex-col space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-4'>
-              {/* User greeting and account links */}
               {session ? (<div className='flex items-center space-x-4'>
                 <span className='text-white font-medium'>Hey {getUserName()}</span>
                 <div className='flex space-x-2'>

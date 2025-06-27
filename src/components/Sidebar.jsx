@@ -79,7 +79,7 @@ export default function Sidebar({ genres }) {
     <li key={genre.id} className="">
       <Link
         to={`/genre/${genre.slug}`}
-        className="block   text-gray-100 border-b-3 inline-block border-transparent rounded-2xl px-4 hover:border-amber-400 transition-colors duration-200 tracking-in-expand"
+        className="   text-gray-100 border-b-3 inline-block border-transparent rounded-2xl px-4 hover:border-amber-400 transition-colors duration-200 tracking-in-expand"
         onClick={() => isMobile && setIsOpen(false)}
         style={{ animationDelay: `${index * 0.05}s` }}
       >

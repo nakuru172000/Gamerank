@@ -34,7 +34,7 @@ export default function BackToTop() {
   }, [location.pathname]);
 
   return (
-    <div transition-all duration-300 className="fixed bottom-6 right-6 z-50">
+    <div transition-all="true" duration-300="true" className="fixed bottom-6 right-6 z-50">
       {isVisible && (
         <button
           onClick={scrollToTop}

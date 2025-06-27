@@ -12,7 +12,7 @@ import SessionProvider from './context/SessionProvider'
 import AccountPage from './pages/account'
 
 
-const RAWG_API_KEY = '40bd261d04944873a0081e285d07a619';
+const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
 function App() {
 
@@ -60,7 +60,7 @@ function App() {
         setTotalPages(Math.ceil(data.count / 40));
       } catch (err) {
         console.error("Failed to fetch games:", err);
-        setError("Impossibile caricare i giochi. Prova più tardi.");
+        setError("Failed to load games,try again later!!.");
       } finally {
         setLoading(false);
       }
