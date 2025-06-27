@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router";
+import FavoriteButton from "../components/FavoriteButton";
 
 export default function GamePage() {
     const { id } = useParams();
@@ -35,16 +36,19 @@ export default function GamePage() {
      <div className="flex flex-col lg:flex-row gap-8 nearblack rounded-xl p-6 shadow-2xl mt-5">
 
   <div className="lg:w-1/1 space-y-6 text-gray-100">
+ 
     <p className="text-sm text-gray-400">
       Released: {data?.released ? new Date(data.released).toLocaleDateString() : 'N/A'}
     </p>
+   
     <div className="flex items-center gap-2">
       <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-black font-bold">
         {data?.rating?.toFixed(1) || '?'}
       </div>
       <span className="text-lg">Rating</span>
+      
     </div>
-      <div className="lg:w-1/2">
+      <div className="lg:w-1/2">    
     <img 
       src={data?.background_image || 'https://via.placeholder.com/800x450?text=No+Image'} 
       alt={data?.name || 'Game cover'} 
@@ -57,7 +61,7 @@ export default function GamePage() {
         {data?.description_raw || 'No description available.'}
       </p>
     
-      <Link to={"/"} val className="
+      <Link to={"/"}  className="
           relative px-3  my-9 ms-4 rounded-lg font-medium text-black
           bg-amber-400
           border-b-4 border-amber-600
@@ -68,6 +72,7 @@ export default function GamePage() {
           focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50
           group overflow-hidden
         ">Back</Link>
+        <div className="relative buttom left-100 z-100"  ><FavoriteButton /></div>
    
     </div>
   </div>
