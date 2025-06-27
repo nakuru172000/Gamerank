@@ -11,6 +11,7 @@ import LoginPage from './pages/login'
 import SessionProvider from './context/SessionProvider'
 import AccountPage from './pages/account'
 import FavoritesProvider from './context/FavoritesProvider'
+import ProfilePage from './pages/profile'
 
 
 const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
@@ -75,6 +76,7 @@ function App() {
         <Router>
           <Layout genres={genresList}>
             <Routes>
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/account" element={<AccountPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />

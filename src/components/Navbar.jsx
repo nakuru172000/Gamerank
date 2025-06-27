@@ -129,6 +129,13 @@ export default function Navbar() {
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
                     <NavLink
+                      to="/profile"
+                      className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                     Favorites
+                    </NavLink>
+                    <NavLink
                       to="/account"
                       className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
                       onClick={() => setIsDropdownOpen(false)}
