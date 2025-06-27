@@ -219,6 +219,13 @@ export default function Navbar() {
                 <span className='text-white font-medium'>Hey {getUserName()}</span>
                 <div className='flex space-x-2'>
                   <NavLink
+                    to="/profile"
+                    className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md border-1 border-amber-400 shadow-amber-900"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Favorites
+                  </NavLink>
+                  <NavLink
                     to="/account"
                     className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md border-1 border-amber-400 shadow-amber-900"
                     onClick={() => setIsDropdownOpen(false)}
