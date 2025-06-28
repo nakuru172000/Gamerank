@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router";
 import FavoriteButton from "../components/FavoriteButton";
 
-export default function GamePage() {
+export default function GamePage({game}) {
     const { id } = useParams();
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -72,7 +72,7 @@ export default function GamePage() {
           focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50
           group overflow-hidden
         ">Back</Link>
-        <div className="relative buttom left-100 z-100"  ><FavoriteButton /></div>
+        <div className="relative buttom left-100 z-100"  ><FavoriteButton  game={data} /></div>
    
     </div>
   </div>

@@ -5,7 +5,7 @@ import Avatar from '../../components/Avatar';
 
 export default function AccountPage() {
     const { session } = useContext(SessionContext);
-
+    
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState('');
     const [first_name, setFirstName] = useState('');

@@ -10,7 +10,7 @@ export default function ProfilePage() {
   return (
     <div className="container flex flex-col justify-center items-center mx-auto p-6 max-w-md">
       <h4 className="text-amber-400 text-2xl mb-4  text-center">
-        Ciao {session?.user.user_metadata.first_name} 
+        Welcome {session?.user.user_metadata.first_name} 
       </h4>
 
       <div className="nearblack py-6 px-9 rounded-lg shadow-xl shadow-amber-900 min-w-xl lg:min-w-3xl">

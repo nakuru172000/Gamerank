@@ -39,21 +39,22 @@ export default function FavoritesProvider({ children }) {
         }
     };
 
-    const removeFavorite = async (gameId) => {
-        const { error } = await supabase
-            .from("favorites")
-            .delete()
-            .eq("game_id", gameId)
-            .eq("user_id", session?.user.id);
-        if (error) {
-            console.error("Error removing favorite:", error);
-            alert(`Errore nella rimozione: ${error.message}`);
-        } else {
-            setFavorites((prevFavorites) =>
-                prevFavorites.filter((el) => el.game_id !== gameId)
-            );
-        }
-    };
+const removeFavorite = async (gameId) => {
+    const { error } = await supabase
+        .from("favorites")
+        .delete()
+        .eq("game_id", gameId)
+        .eq("user_id", session?.user.id);
+
+    if (error) {
+        console.error("Error removing favorite:", error);
+        alert(`Errore nella rimozione: ${error.message}`);
+    } else {
+        setFavorites((prevFavorites) =>
+            prevFavorites.filter((el) => el.game_id !== gameId)
+        );
+    }
+};
 
     useEffect(() => {
         if (session) {

@@ -8,7 +8,7 @@ export default function FavoriteButton({ game }) {
   return (
     <div>
       {isFavorite() ? (
-        <button  onClick={() => removeFavorite(game)}  style={{
+        <button  onClick={() => removeFavorite(game.id)}  style={{
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',

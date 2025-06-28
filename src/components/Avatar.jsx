@@ -46,7 +46,7 @@ export default function Avatar({ url, size, onUpload }) {
             await downloadImage(filePath);
             
             // Notify parent component
-            onUpload(filePath);
+            onUpload(event, filePath);
             
         } catch (error) {
             alert(error.message);
