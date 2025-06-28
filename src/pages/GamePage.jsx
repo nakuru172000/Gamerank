@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router";
 import FavoriteButton from "../components/FavoriteButton";
 
-export default function GamePage({game}) {
+export default function GamePage() {
     const { id } = useParams();
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -55,14 +55,14 @@ export default function GamePage({game}) {
       className="w-full h-auto rounded-lg object-cover shadow-lg"
     />
   </div>
-    <div className="space-y-2">
+    <div className="space-y-6  flex-col ">
       <h2 className="text-2xl font-semibold border-b border-gray-700 pb-2">About</h2>
       <p className="text-gray-300 leading-relaxed">
         {data?.description_raw || 'No description available.'}
       </p>
     
       <Link to={"/"}  className="
-          relative px-3  my-9 ms-4 rounded-lg font-medium text-black
+           px-6   ms-4 rounded-lg font-medium text-black
           bg-amber-400
           border-b-4 border-amber-600
           transition-all duration-200 ease-out
