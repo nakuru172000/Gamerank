@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router";
 import FavoriteButton from "../components/FavoriteButton";
 import Chatbox from "../components/Chatbox";
+import SessionContext from "../context/SessionContext";
 
 export default function GamePage() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const { session } = useContext(SessionContext);
   const rawgKey = import.meta.env.VITE_RAWG_API_KEY
   const initialUrl = `https://api.rawg.io/api/games/${id}?key=${rawgKey}`;
 
@@ -45,10 +47,12 @@ export default function GamePage() {
               {data?.rating?.toFixed(1) || '?'}
             </div>
             <span className="text-lg">Rating</span>
-            <div className="relative flex items-center justify-center ms-5 z-10">
-              <FavoriteButton game={data} />
-              <p>Add to Favorites</p>
-            </div>
+            {session && (
+              <div className="relative flex items-center justify-center ms-5 z-10">
+                <FavoriteButton game={data} />
+                <p>Add to Favorites</p>
+              </div>
+            )}
           </div>  
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="w-full lg:w-1/2 space-y-6">
