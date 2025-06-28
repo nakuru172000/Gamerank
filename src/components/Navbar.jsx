@@ -125,7 +125,7 @@ export default function Navbar() {
 
                 {isDropdownOpen && (
                   <div
-                    className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700"
+                    className="absolute right-0 mt-2 w-48 bg-black rounded-md shadow-lg py-1 z-50 border border-gray-700"
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
                     <NavLink
