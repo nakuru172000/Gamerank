@@ -46,7 +46,7 @@ export default function GamePage({game}) {
         {data?.rating?.toFixed(1) || '?'}
       </div>
       <span className="text-lg">Rating</span>
-      
+      <div className="relative buttom  flex items-center justify-center ms-5  z-100"  ><FavoriteButton  game={data} /><p>Add to Favorites</p></div>
     </div>
       <div className="lg:w-1/2">    
     <img 
@@ -72,7 +72,7 @@ export default function GamePage({game}) {
           focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50
           group overflow-hidden
         ">Back</Link>
-        <div className="relative buttom left-100 z-100"  ><FavoriteButton  game={data} /></div>
+       
    
     </div>
   </div>
