@@ -64,10 +64,10 @@ export default function Sidebar({ genres }) {
         ${isMobile ? 'fixed inset-y-20 left-0 transform' : 'static'}
         ${isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'}
         w-64 text-white transition-transform duration-300 ease-in-out
-        z-40  overflow-y-scroll
+        z-40  overflow-y-auto scrollbar-hide
         ${isMobile ? '' : ''}
       `}>
-        <div className="p-4 max-h-fit">
+        <div className="p-4 ">
           
           <div className="nearblack rounded-xl ps-1  shadow-md shadow-amber-900">
             <h2 className="text-xl font-semibold mb-2 text-center">Genres :</h2>

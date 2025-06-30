@@ -306,3 +306,17 @@ h3 {
                 translate: 220%
         }
 }
+
+
+
+/* TailwindHideSearchBar */
+/* In your global CSS file */
+.scrollbar-hide {
+  /* For Webkit browsers (Chrome, Safari) */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}

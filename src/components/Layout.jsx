@@ -6,7 +6,7 @@ import { FaArrowUp } from 'react-icons/fa';
 
 export default function Layout({ children,genres }) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen max-w-screen">
       <div className='sticky top-0 z-50'><Navbar /> 
       </div>
       
