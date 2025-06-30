@@ -222,10 +222,10 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Navigation Links */}
-            <nav className=' space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-4'>
+            <nav className=' space-y-2 md:space-y-0  md:items-center md:space-x-4'>
               {session ? (<div className='flex-col items-center space-x-4'>
-                <span className='text-white font-medium mb-3'>Hey {getUserName()}</span>
-                <div className='space-x-2 mt-3 flex-col justify-between'>
+                <span className='text-white font-medium '>Hey {getUserName()}</span>
+                <div className='mt-3 flex flex-col justify-evenly items-start'>
                   <NavLink to="/profile" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
                     Favorites
                   </NavLink>
@@ -246,9 +246,10 @@ export default function Navbar() {
                   >
                     Profile
                   </NavLink>*/
+                  
                     <button
                       onClick={signOut}
-                      className=" text-gray-300 cursor-pointer"
+                      className=" text-gray-300 cursor-pointer px-2"
                     >
                       Sign Out
                     </button>}

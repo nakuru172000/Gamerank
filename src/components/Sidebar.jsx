@@ -67,7 +67,7 @@ export default function Sidebar({ genres }) {
         z-40  overflow-y-auto scrollbar-hide
         ${isMobile ? '' : ''}
       `}>
-        <div className="p-4 ">
+        <div className="p-4 mb-5 ">
           
           <div className="nearblack rounded-xl ps-1  shadow-md shadow-amber-900">
             <h2 className="text-xl font-semibold mb-2 text-center">Genres :</h2>
@@ -98,7 +98,7 @@ export default function Sidebar({ genres }) {
       {/* Overlay for mobile when sidebar is open */}
       {isMobile && isOpen && (
         <div 
-          className="fixed  inset-20 bg-opacity-50 z-9999"
+          className="fixed  bg-opacity-50 z-9999"
           onClick={() => setIsOpen(false)}
         />
       )}
