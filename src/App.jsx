@@ -12,6 +12,8 @@ import SessionProvider from './context/SessionProvider'
 import AccountPage from './pages/account'
 import FavoritesProvider from './context/FavoritesProvider'
 import ProfilePage from './pages/profile'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import TermsAndCookies from './components/TermsAndCookies'
 
 
 const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
@@ -86,6 +88,9 @@ function App() {
               <Route path="/games/:slug/:id" element={<GamePage />} />
               <Route path="/about" element={<GenrePage />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="/termsandcookies" element={<TermsAndCookies />} />
+
             </Routes>
           </Layout>
         </Router>

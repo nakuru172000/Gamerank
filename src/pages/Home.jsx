@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import GameCard from "../components/GameCard";
 
 export default function Home({ games, loading, error }) {
     const [currentPage, setCurrentPage] = useState(1);
     const gamesPerPage = 10;
-    const randomGame = games.length > 0 ? Math.floor(Math.random() * games.length) : 0;
+    
+    const randomGame = useMemo(() => {
+        return games.length > 0 ? Math.floor(Math.random() * games.length) : 0;
+    }, [games.length]); 
+    
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
     const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
     const totalPages = Math.ceil(games.length / gamesPerPage);
+    
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
@@ -37,9 +42,9 @@ export default function Home({ games, loading, error }) {
                 ))}
             </div>
 
-            {/* Pagination  */}
+            {/* Pagination */}
             {games.length > gamesPerPage && (
-                <div className="flex justify-center mt-8 space-x-2">           
+                <div className="flex justify-center mt-8 space-x-2">
                     <button
                         onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
                         disabled={currentPage === 1}
@@ -49,7 +54,8 @@ export default function Home({ games, loading, error }) {
                             }`}
                     >
                         Prev
-                    </button>      
+                    </button>
+                    
                     {[...Array(totalPages).keys()].map(number => (
                         <button
                             key={number + 1}
@@ -62,6 +68,7 @@ export default function Home({ games, loading, error }) {
                             {number + 1}
                         </button>
                     ))}
+                    
                     <button
                         onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
                         disabled={currentPage === totalPages}
