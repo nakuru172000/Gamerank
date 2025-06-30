@@ -14,7 +14,7 @@ export default function Navbar() {
   const getSession = async () => {
     const { data } = await supabase.auth.getSession();
     if (data.session) {
-      setSession(data.session); 
+      setSession(data.session);
     } else {
       setSession(null);
     }
@@ -27,11 +27,11 @@ export default function Navbar() {
         console.error('Sign out error:', error);
         alert('Error signing out: ' + error.message);
       } else {
-     
+
         setSession(null);
         setIsDropdownOpen(false);
-        navigate('/'); 
-    
+        navigate('/');
+
       }
     } catch (err) {
       console.error('Unexpected error during sign out:', err);
@@ -90,8 +90,16 @@ export default function Navbar() {
           </NavLink>
 
           {/* Search Bar - Desktop */}
-          <div className="hidden lg:block relative w-1/3 max-w-md mx-4">
+          <div className="hidden md:block relative w-1/3 max-w-md mx-4 hover:ring-2 rounded-3xl hover:ring-gray-600  hover:ring-rounded-md   ">
             <SearchBar />
+            <svg
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
           </div>
 
           {/* Desktop Navigation */}
@@ -133,7 +141,7 @@ export default function Navbar() {
                       className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                     Favorites
+                      Favorites
                     </NavLink>
                     <NavLink
                       to="/account"
@@ -200,11 +208,11 @@ export default function Navbar() {
           <div className="nearblack rounded-lg p-4 space-y-4 shadow-amber-900 shadow-md mt-11">
             <div className="relative">
 
-              <div className=" relative w-1/3 max-w-md mx-4">
-                <SearchBar className=" bg-gray-500" />
+              <div className=" relative  max-w-md rounded-3xl  bg-amber-400">
+                <SearchBar className="" />
               </div>
               <svg
-                className="absolute left-8 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -214,11 +222,17 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Navigation Links */}
-            <nav className='flex flex-col space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-4'>
-              {session ? (<div className='flex items-center space-x-4'>
-                <span className='text-white font-medium'>Hey {getUserName()}</span>
-                <div className='flex space-x-2'>
-                  <NavLink
+            <nav className=' space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-4'>
+              {session ? (<div className='flex-col items-center space-x-4'>
+                <span className='text-white font-medium mb-3'>Hey {getUserName()}</span>
+                <div className='space-x-2 mt-3 flex-col justify-between'>
+                  <NavLink to="/profile" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
+                    Favorites
+                  </NavLink>
+                  <NavLink to="/account" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
+                    Profile
+                  </NavLink>
+                  {/* <NavLink
                     to="/profile"
                     className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md border-1 border-amber-400 shadow-amber-900"
                     onClick={() => setIsDropdownOpen(false)}
@@ -231,19 +245,19 @@ export default function Navbar() {
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     Profile
-                  </NavLink>
-                  <button
-                    onClick={signOut}
-                    className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md shadow-amber-900 border-1 border-amber-400"
-                  >
-                    Sign Out
-                  </button>
+                  </NavLink>*/
+                    <button
+                      onClick={signOut}
+                      className=" text-gray-300 cursor-pointer"
+                    >
+                      Sign Out
+                    </button>}
                 </div>
               </div>
-              ) : (<> <NavLink to="/login" className={getNavLinkClass}>
+              ) : (<> <NavLink to="/login" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
                 Login
               </NavLink>
-                <NavLink to="/register" className={getNavLinkClass}>
+                <NavLink to="/register" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
                   Register
                 </NavLink></>)}
               {/* Navigation items */}

@@ -34,7 +34,6 @@ export default function Chatbox({ data }) {
             <div className="nearblack p-6 rounded-lg shadow-lg shadow-amber-900/30">
                 <div className="mb-6 rounded-lg min-h-[300px] ">
                     <RealtimeChat data={data && data} />
-                    {/* <p className="text-gray-400 text-center">Chat panel here...</p> */}
                 </div>
                                 
                 <form onSubmit={handleMessageSubmit} className="space-y-4">

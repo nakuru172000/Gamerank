@@ -64,22 +64,22 @@ export default function Sidebar({ genres }) {
         ${isMobile ? 'fixed inset-y-20 left-0 transform' : 'static'}
         ${isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'}
         w-64 text-white transition-transform duration-300 ease-in-out
-        z-40 h-screen overflow-y-auto
+        z-40  overflow-y-scroll
         ${isMobile ? '' : ''}
       `}>
-        <div className="p-4">
+        <div className="p-4 max-h-fit">
           
-          <div className="nearblack rounded-xl p-3  shadow-md shadow-amber-900">
+          <div className="nearblack rounded-xl ps-1  shadow-md shadow-amber-900">
             <h2 className="text-xl font-semibold mb-2 text-center">Genres :</h2>
             {!genres ? (
               <p className="text-gray-200 text-center py-4">Loading genres...</p>
             ) : genres.length > 0 ? (
-              <ul className="space-y-2">
+              <ul className="space-y-1 lg:space-y-3">
   {genres.map((genre, index) => (
-    <li key={genre.id} className="">
-      <Link
+    <li key={genre.id} className="" name="link">
+      <Link name="link"
         to={`/genre/${genre.slug}`}
-        className="   text-gray-100 border-b-3 inline-block border-transparent rounded-2xl px-4 hover:border-amber-400 transition-colors duration-200 tracking-in-expand"
+        className="   text-gray-100 border-b-3 md:inline block border-transparent rounded-2xl px-2 md:px-4 hover:border-amber-400 transition-colors duration-200 tracking-in-expand"
         onClick={() => isMobile && setIsOpen(false)}
         style={{ animationDelay: `${index * 0.05}s` }}
       >
