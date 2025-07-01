@@ -120,7 +120,7 @@ export default function Navbar() {
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center space-x-1 text-gray-300 hover:text-white px-3 py-2"
                 >
-                  <span>Hey {getUserName()}</span>
+                  <span >Hey<span className="text-amber-300"> {getUserName()}</span></span>
                   <svg
                     className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
                     fill="none"
@@ -224,7 +224,7 @@ export default function Navbar() {
             {/* Mobile Navigation Links */}
             <nav className=' space-y-2 md:space-y-0  md:items-center md:space-x-4'>
               {session ? (<div className='flex-col items-center space-x-4'>
-                <span className='text-white font-medium '>Hey {getUserName()}</span>
+                <span className='text-white'>Hey {getUserName() }</span>
                 <div className='mt-3 flex flex-col justify-evenly items-start'>
                   <NavLink to="/profile" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
                     Favorites
@@ -232,27 +232,12 @@ export default function Navbar() {
                   <NavLink to="/account" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>
                     Profile
                   </NavLink>
-                  {/* <NavLink
-                    to="/profile"
-                    className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md border-1 border-amber-400 shadow-amber-900"
-                    onClick={() => setIsDropdownOpen(false)}
+                  {<button
+                    onClick={signOut}
+                    className=" text-gray-300 cursor-pointer px-2"
                   >
-                    Favorites
-                  </NavLink>
-                  <NavLink
-                    to="/account"
-                    className="px-3  text-gray-300 rounded-md transition-colors duration-200 shadow-md border-1 border-amber-400 shadow-amber-900"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    Profile
-                  </NavLink>*/
-                  
-                    <button
-                      onClick={signOut}
-                      className=" text-gray-300 cursor-pointer px-2"
-                    >
-                      Sign Out
-                    </button>}
+                   <span> Sign Out</span>
+                  </button>}
                 </div>
               </div>
               ) : (<> <NavLink to="/login" onClick={() => setIsMenuOpen(false)} className={getNavLinkClass}>

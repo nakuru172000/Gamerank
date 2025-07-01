@@ -42,7 +42,7 @@ export default function GenrePage() {
 
     return (
         <div className="container mx-auto px-4">
-            <h1 className="text-5xl text-center my-9 font-bold">Welcome to {genre} Page</h1>
+            <h1 className="text-3xl text-center my-9 font-bold">Results for : <span className="text-amber-400"> {genre}</span> genre</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {data?.results?.map((game) => (
                     <GameCard key={game.id} game={game} />
