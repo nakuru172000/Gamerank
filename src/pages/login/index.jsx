@@ -82,7 +82,7 @@ export default function LoginPage() {
     return (
         <div className="container mx-auto p-6 max-w-md">
             <h4 className="text-amber-400 text-2xl mb-4 ps-4">Login</h4>
-            <form onSubmit={onSubmit} noValidate className="nearblack p-6 rounded-lg shadow-xl shadow-amber-900">
+            <form onSubmit={onSubmit} noValidate className="nearblack p-6 rounded-lg shadow-lg shadow-amber-900">
                 <div className="mb-4 ">
                     <label htmlFor="email" className="block text-gray-300 mb-2">Email:</label>
                     <input

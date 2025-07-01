@@ -2,6 +2,7 @@ import { useContext } from "react";
 import SessionContext from "../../context/SessionContext";
 import FavoritesContext from "../../context/FavoritesContext";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router";
 
 export default function ProfilePage() {
   const { session } = useContext(SessionContext);
@@ -21,7 +22,7 @@ export default function ProfilePage() {
         ) : (
           <ul className="space-y-4 ">
             {favorites.map((game) => (
-              <li
+              <li name="link"
                 key={game.game_id}
                 className="flex  justify-between mx-auto  bg-gray-600/50 p-1 px-3 rounded  max-w-4/6 md:max-w-none "
               >
@@ -36,14 +37,32 @@ export default function ProfilePage() {
                   <p className="text-gray-100 font-medium text-sm">
                     {game.game_name}
                   </p>
+
+
                 </div>
-                <button
-                  onClick={() => removeFavorite(game.game_id)}
-                  className="text-red-400 hover:text-red-600 transition-transform duration-300 transform hover:scale-125 active:scale-90"
-                  title="Rimuovi dai preferiti"
-                >
-                  <FaTrashAlt className="text-lg" />
-                </button>
+                <div className="flex items-center">
+                  <Link title="more info"
+                    to={`/games/${game.slug}/${game.id}`}
+className="mx-3 transition-transform duration-300 transform hover:scale-125 active:scale-90"
+                  >
+                    <svg
+                      className="w-8 h-8 text-amber-400"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.75-3 2.75-3 5z" />
+                    </svg>
+                  </Link>
+                  <button
+                    onClick={() => removeFavorite(game.game_id)}
+                    className="text-red-400 hover:text-red-600 transition-transform duration-300 transform hover:scale-125 active:scale-90"
+                    title="Remove from favorites"
+                  >
+
+                    <FaTrashAlt className="text-lg" />
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

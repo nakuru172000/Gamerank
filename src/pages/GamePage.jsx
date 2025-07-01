@@ -58,7 +58,7 @@ export default function GamePage() {
             <div className="w-full lg:w-1/2 space-y-6">
               {/* Image */}
               <img
-                src={data?.background_image || 'https://via.placeholder.com/800x450?text=No+Image'}
+                src={data?.background_image || 'https://picsum.photos/800/450?grayscale'}
                 alt={data?.name || 'Game cover'}
                 className="w-full h-auto rounded-lg object-cover shadow-lg"
               />

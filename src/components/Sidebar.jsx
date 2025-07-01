@@ -69,7 +69,7 @@ export default function Sidebar({ genres }) {
       `}>
         <div className="p-4 mb-5 ">
           
-          <div className="nearblack rounded-xl ps-1  shadow-md shadow-amber-900">
+          <div className="nearblack rounded-xl ps-1  shadow-lg shadow-amber-900">
             <h2 className="text-xl font-semibold mb-2 text-center">Genres :</h2>
             {!genres ? (
               <p className="text-gray-200 text-center py-4">Loading genres...</p>
