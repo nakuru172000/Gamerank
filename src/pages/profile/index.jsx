@@ -42,7 +42,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex items-center">
                   <Link title="more info"
-                    to={`/games/${game.slug}/${game.id}`}
+                    to={`/games/${game.game_slug}/${game.game_id}`}
 className="mx-3 transition-transform duration-300 transform hover:scale-125 active:scale-90"
                   >
                     <svg

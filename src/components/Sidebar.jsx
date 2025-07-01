@@ -7,7 +7,7 @@ export default function Sidebar({ genres }) {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024); // 1024px breakpoint for tablet
+      setIsMobile(window.innerWidth < 1024); 
     };
 
     checkScreenSize();
@@ -95,7 +95,7 @@ export default function Sidebar({ genres }) {
         </div>
       </div>
 
-      {/* Overlay for mobile when sidebar is open */}
+      {/* mobile when sidebar is open */}
       {isMobile && isOpen && (
         <div 
           className="fixed  bg-opacity-50 z-9999"
