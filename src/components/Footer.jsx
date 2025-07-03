@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 const Footer = () => {
   return (
-    <footer className="nearblack text-amber-400 pt-12 pb-6">
+    <footer className="nearblack text-amber-400 pt-5 pb-2">
       <div className="container mx-auto px-4">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mb-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mb-2 ">
          
            {/* Social Media */}
           <div>
@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Contacts */}
           <div>
             <h3 className="text-xl font-bold mb-2">Contact Us</h3>
-            <ul className="space-y-2 mb-4">
+            <ul className=" mb-4">
               <li className="flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -68,9 +68,9 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 pt-6 text-center text-gray-400">
+        <div className="border-t border-gray-700 pt-2 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} GameRank by TudorM. All rights reserved.</p>
-          <div className="mt-2 text-sm">
+          <div className=" text-sm">
             <Link to={"/privacypolicy"} className="hover:text-white transition"> Privacy Policy</Link> |
             <Link to={"/termsandcookies"} className="hover:text-white transition"> Cookie Policy</Link>
 
