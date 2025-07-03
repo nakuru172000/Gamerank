@@ -36,7 +36,7 @@ export default function GamePage() {
         {data?.name || 'Game Title'}
       </h1>
       
-      <div className="nearblack rounded-xl p-6 shadow-lg shadow-amber-900 mt-5">
+      <div className="nearblack rounded-xl p-6 shadow-lg shadow-amber-900  mt-5">
         <div className="space-y-6 text-gray-100">
           <p className="text-sm text-gray-400">
             Released: {data?.released ? new Date(data.released).toLocaleDateString() : 'N/A'}
@@ -75,14 +75,14 @@ export default function GamePage() {
                     transition-all duration-200 ease-out
                     transform hover:-translate-y-1 active:translate-y-0
                     active:border-b-2 active:mt-[2px]
-                    shadow-lg hover:shadow-xl
+                    
                     focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
                 >
                   Back
                 </Link>
               </div>
             </div>
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 ">
               <Chatbox data={data} />
             </div>
           </div>

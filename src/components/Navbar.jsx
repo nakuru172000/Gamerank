@@ -58,7 +58,7 @@ export default function Navbar() {
   ];
 
   const getNavLinkClass = ({ isActive }) =>
-    `text-base lg:text-lg font-medium px-2 py-1 rounded transition-colors duration-200 ` +
+    `text-base lg:text-lg font-medium px-2 rounded transition-colors duration-200 ` +
     (isActive
       ? 'bg-amber-400 text-black shadow-md'
       : 'text-gray-300 hover:text-white hover:bg-gray-700');

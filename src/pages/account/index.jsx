@@ -79,7 +79,7 @@ export default function AccountPage() {
     return (
         <div className="container mx-auto p-6 max-w-md text-white flex flex-col justify-center items-center">
             <h2 className="text-2xl font-bold mb-6 text-amber-400">Profile Settings</h2>
-            <form onSubmit={updateProfile} className="space-y-4 nearblack p-6 rounded-lg shadow-lg min-w-sm lg:min-w-3xl shadow-amber-900/30">
+            <form onSubmit={updateProfile} className="space-y-4 nearblack p-6 rounded-lg shadow-lg min-w-sm lg:min-w-3xl shadow-amber-900 button1">
             <Avatar 
             url={avatar_Url}
             size={150}

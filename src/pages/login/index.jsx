@@ -30,7 +30,7 @@ export default function LoginPage() {
 
     try {
         const { data: { user }, error } = await supabase.auth.signInWithPassword({
-            email: data.email.trim(), // Add trim() to remove whitespace
+            email: data.email.trim(), 
             password: data.password,
         });
 
@@ -80,9 +80,9 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="container mx-auto p-6 max-w-md">
-            <h4 className="text-amber-400 text-2xl mb-4 ps-4">Login</h4>
-            <form onSubmit={onSubmit} noValidate className="nearblack p-6 rounded-lg shadow-lg shadow-amber-900">
+        <div className="container  mx-auto p-6 max-w-md rounded-lg">
+            <h4 className="text-amber-400 text-2xl mb-4 ps-4">Login</h4>        
+            <form onSubmit={onSubmit} noValidate className="nearblack p-6 rounded-lg shadow-lg button1 shadow-amber-900">
                 <div className="mb-4 ">
                     <label htmlFor="email" className="block text-gray-300 mb-2">Email:</label>
                     <input
@@ -116,9 +116,9 @@ export default function LoginPage() {
 
                 <button
                     type="submit"
-                    className="w-full bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded transition duration-200"
+                    className=" w-full bg-amber-400 hover:bg-amber-500 text-gray-600 font-bold py-3 px-4 rounded transition duration-200 text-center"
                 >
-                    Log In
+                    Login
                 </button>
             </form>
         </div>

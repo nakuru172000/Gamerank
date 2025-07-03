@@ -14,7 +14,7 @@ export default function ProfilePage() {
         Welcome {session?.user.user_metadata.first_name}
       </h4>
 
-      <div className="nearblack py-6 px-9 rounded-lg shadow-xl shadow-amber-900 min-w-xl lg:min-w-3xl flex-col  justify-center">
+      <div className="nearblack py-6 px-9 rounded-lg shadow-xl shadow-amber-900 min-w-xl lg:min-w-3xl flex-col  justify-center button1">
         <h5 className="text-gray-300 text-lg mb-4 text-center sm:text-start">Your favorite games:</h5>
 
         {favorites.length === 0 ? (

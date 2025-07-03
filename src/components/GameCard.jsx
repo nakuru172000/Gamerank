@@ -12,9 +12,9 @@ export default function GameCard({ game }) {
     <div key={game.id} className=" nearblack rounded-lg shadow-lg shadow-amber-900 overflow-hidden transform md:hover:scale-105 transition-transform duration-300 ease-in-out  flex flex-col h-full">
        <CustomLazyLoadImage image={image} />
         <div className=" pb-12 flex-grow relative">
-        <div className=" flex justify-between items-baseline" > 
-          <h3 className="text-xl px-4 font-semibold mb-2 text-white truncate">{game.name}</h3>
-          {session && <FavoriteButton game={game} />}
+        <div className=" flex justify-between items-center my-2 mx-2" > 
+          <h3 className="text-xl px-4 font-semibold  text-white truncate">{game.name}</h3>
+          {session && <FavoriteButton game={game} className="mb-2" />}
         </div>
           <div className="flex items-center text-sm text-gray-200 mb-2 px-4 ">
           {game.rating > 0 && (
@@ -40,7 +40,7 @@ export default function GameCard({ game }) {
          <div className="w-full absolute bottom-4  flex justify-center   ">
           <Link
             to={`/games/${game.slug}/${game.id}`}
-            className="block relative px-3  rounded-lg font-medium text-black bg-amber-400 border-b-4 border-amber-600 transition-all duration-200 ease-out transform hover:-translate-y-1 active:translate-y-0 active:border-b-2 active:mt-[2px] shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50 group overflow-hidden w-3/4 sm:w-1/2 text-center"
+            className="block relative px-3  rounded-lg font-medium text-black bg-amber-400 border-b-4 border-amber-600 transition-all duration-200 ease-out transform active:translate-y-0 active:border-b-2  shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50 group overflow-hidden w-3/4 sm:w-1/2 text-center"
           >
             more
           </Link>

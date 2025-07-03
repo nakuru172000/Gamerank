@@ -30,8 +30,8 @@ export default function Chatbox({ data }) {
     };
 
     return (
-        <div className="container mx-auto p-6 max-w-2xl">
-            <div className="nearblack p-6 rounded-lg shadow-lg shadow-amber-900/30">
+        <div className="container mx-auto p-6 max-w-2xl button1 ">
+            <div className="nearblack p-6 rounded-lg shadow-lg shadow-amber-900 button1 z-50">
                 <div className="mb-6 rounded-lg min-h-[300px] ">
                     <RealtimeChat data={data && data} />
                 </div>

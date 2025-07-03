@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import FavoritesContext from "../context/FavoritesContext";
+
 export default function FavoriteButton({ game }) {
     const {favorites,addFavorites,removeFavorite}=useContext(FavoritesContext);
     const isFavorite=()=>favorites.find((el)=>+el.game_id === game?.id)
