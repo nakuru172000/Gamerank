@@ -77,9 +77,9 @@ export default function RealtimeChat({ data }) {
                     }
                 }
             )
-            .subscribe((status) => {
-                console.log('Subscription status:', status);
-            });
+            // .subscribe((status) => {
+            //     console.log('Subscription status:', status);
+            // });
         const pollInterval = setInterval(() => {
             getInitialMessages();
         }, 4000);
@@ -126,7 +126,7 @@ export default function RealtimeChat({ data }) {
                                         <p className="font-medium text-amber-400">
                                             {message.profile_username}
                                         </p>
-                                        {console.log('Updated at:', message.updated_at)}
+                                        {/* {console.log('Updated at:', message.updated_at)} */}
                                         <small className="text-gray-400 text-xs">
                                             {message.updated_at
                                                 ? dayjs(message.updated_at).fromNow()
